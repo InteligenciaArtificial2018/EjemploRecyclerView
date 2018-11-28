@@ -7,7 +7,8 @@
 
     <ImageView
             android:layout_width="wrap_content"
-            android:layout_height="217dp" app:srcCompat="@drawable/platillo01" android:id="@+id/ivImagen"/>
+            android:layout_height="217dp" app:srcCompat="@drawable/platillo01" android:id="@+id/ivImagen"
+            android:layout_marginTop="16dp"/>
     <TextView
             android:text="TextView"
             android:layout_width="match_parent"
@@ -27,7 +28,7 @@
                 android:textColor="@color/colorPrimary"/>
         <RatingBar
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" android:id="@+id/rbPuntuacion" android:layout_weight="1"
+                android:layout_height="wrap_content" android:id="@+id/rbPuntuacion" android:layout_weight="0"
                 android:numStars="5" android:rating="3.5"/>
     </LinearLayout>
 </LinearLayout>

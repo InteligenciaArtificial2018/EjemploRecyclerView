@@ -10,13 +10,7 @@ import android.widget.RatingBar
 import android.widget.TextView
 
 class AdaptadorCustom(var context: Context, var items: ArrayList<Platillo>): RecyclerView.Adapter<AdaptadorCustom.ViewHolder>() {
-    /*var items: ArrayList<Platillo>? = null
-
-    init {
-        this.items = items
-    }*/
-
-    override fun onCreateViewHolder(parent: ViewGroup, p1: Int): AdaptadorCustom.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, position: Int): AdaptadorCustom.ViewHolder {
         val vista = LayoutInflater.from(context).inflate(R.layout.template_platillo, parent, false)
         val viewHolder = ViewHolder(vista)
 
@@ -24,22 +18,21 @@ class AdaptadorCustom(var context: Context, var items: ArrayList<Platillo>): Rec
     }
 
     override fun getItemCount(): Int {
-        return items?.count()
+        return items.count()
     }
 
     override fun onBindViewHolder(holder: AdaptadorCustom.ViewHolder, position: Int) {
-        val item = items?.get(position)
+        val item = items.get(position)
         holder.foto?.setImageResource(item.foto)
         holder.nombre?.text = item.nombre
-        holder.precio?.text = item.precio.toString()
+        holder.precio?.text = "L " + item.precio.toString()
         holder.rating?.rating = item.rating.toFloat()
     }
 
-    class ViewHolder(vista: View): RecyclerView.ViewHolder(vista) {
-        var vista = vista
+    class ViewHolder(var vista: View): RecyclerView.ViewHolder(vista) {
         var foto: ImageView? = null
         var nombre: TextView? = null
-        var precio: TextView? =  null
+        var precio: TextView? = null
         var rating: RatingBar? = null
 
         init {
