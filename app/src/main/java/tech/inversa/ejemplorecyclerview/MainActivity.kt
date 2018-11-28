@@ -7,7 +7,7 @@ import android.support.v7.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
     var lista: RecyclerView? = null
-    var adaptador
+    var adaptador: AdaptadorCustom? = null
     var layoutManager: RecyclerView.LayoutManager? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
         layoutManager = LinearLayoutManager(this)
         lista?.layoutManager = layoutManager
 
-        adaptador = AdaptadorCustom(platillos)
+        adaptador = AdaptadorCustom(this, platillos)
+        lista?.adapter = adaptador
     }
 }
