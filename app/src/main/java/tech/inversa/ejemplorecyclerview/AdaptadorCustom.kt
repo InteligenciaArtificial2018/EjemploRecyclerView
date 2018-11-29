@@ -29,11 +29,13 @@ class AdaptadorCustom(var context: Context, var items: ArrayList<Platillo>): Rec
         holder.rating?.rating = item.rating.toFloat()
     }
 
-    class ViewHolder(var vista: View): RecyclerView.ViewHolder(vista) {
+    class ViewHolder(var vista: View): RecyclerView.ViewHolder(vista), View.OnClickListener {
+
         var foto: ImageView? = null
         var nombre: TextView? = null
         var precio: TextView? = null
         var rating: RatingBar? = null
+        var listener: ClickListener? = null
 
         init {
             foto = vista.findViewById(R.id.ivImagen)
