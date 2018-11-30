@@ -41,8 +41,12 @@ class MainActivity : AppCompatActivity() {
             override fun onClick(vista: View, index: Int) {
                 Toast.makeText(applicationContext, platillos.get(index).nombre, Toast.LENGTH_SHORT).show()
             }
-
+        }, object: LongClickListener {
+            override fun LongClickListener(vista: View, index: Int) {
+                Log.d("LONG", "Long listenersito")
+            }
         })
+
         lista?.adapter = adaptador
 
         // Swipe to refresh

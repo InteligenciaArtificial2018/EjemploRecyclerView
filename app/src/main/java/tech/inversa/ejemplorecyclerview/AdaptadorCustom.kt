@@ -9,11 +9,11 @@ import android.widget.ImageView
 import android.widget.RatingBar
 import android.widget.TextView
 
-class AdaptadorCustom(var context: Context, var items: ArrayList<Platillo>, var listener: ClickListener): RecyclerView.Adapter<AdaptadorCustom.ViewHolder>() {
+class AdaptadorCustom(var context: Context, var items: ArrayList<Platillo>, var listener: ClickListener, var longClickListener: LongClickListener): RecyclerView.Adapter<AdaptadorCustom.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, position: Int): AdaptadorCustom.ViewHolder {
         val vista = LayoutInflater.from(context).inflate(R.layout.template_platillo, parent, false)
 
-        return ViewHolder(vista, listener)
+        return ViewHolder(vista, listener, longClickListener)
     }
 
     override fun getItemCount(): Int {
@@ -28,7 +28,13 @@ class AdaptadorCustom(var context: Context, var items: ArrayList<Platillo>, var 
         holder.rating?.rating = item.rating.toFloat()
     }
 
-    class ViewHolder(var vista: View, var listener: ClickListener): RecyclerView.ViewHolder(vista), View.OnClickListener {
+    class ViewHolder(var vista: View, var listener: ClickListener, var longClickListener: LongClickListener): RecyclerView.ViewHolder(vista), View.OnClickListener, View.OnLongClickListener {
+        override fun onLongClick(v: View?): Boolean {
+            longClickListener.LongClickListener(vista, adapterPosition)
+
+            return true
+        }
+
         override fun onClick(v: View?) {
             listener.onClick(vista, adapterPosition)
         }
@@ -45,6 +51,7 @@ class AdaptadorCustom(var context: Context, var items: ArrayList<Platillo>, var 
             rating = vista.findViewById(R.id.rbPuntuacion)
 
             vista.setOnClickListener(this)
+            vista.setOnLongClickListener(this)
         }
     }
 }
